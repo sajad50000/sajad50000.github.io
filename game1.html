@@ -2,53 +2,169 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>اسم اللعبة</title>
+<title>اسم لعبة الوندوز</title>
+
 <style>
 body{
-    background:#0e0e0e;
-    color:white;
-    font-family:Arial;
-    text-align:center;
     margin:0;
+    font-family:Arial;
+    background:#0b0b0b;
+    color:white;
 }
+
+/* ===== HEADER ===== */
+.header{
+    position:relative;
+}
+.header img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    filter:brightness(60%);
+}
+.header h1{
+    position:absolute;
+    bottom:30px;
+    right:30px;
+    font-size:38px;
+}
+
+/* ===== CONTENT ===== */
 .container{
+    max-width:1100px;
+    margin:auto;
     padding:20px;
 }
-img{
-    width:90%;
-    max-width:600px;
-    border-radius:15px;
+
+/* ===== GAME INFO ===== */
+.game-info{
+    display:flex;
+    gap:25px;
+    margin-top:-60px;
+    align-items:center;
 }
-.download{
+.game-info img{
+    width:150px;
+    height:150px;
+    border-radius:20px;
+    object-fit:cover;
+    box-shadow:0 0 20px black;
+}
+.info-text h2{
+    margin:0;
+    font-size:28px;
+}
+.meta{
+    margin-top:10px;
+    color:#ccc;
+}
+
+/* ===== DESCRIPTION ===== */
+.description{
+    margin-top:30px;
+    background:#1a1a1a;
+    padding:20px;
+    border-radius:15px;
+    line-height:1.8;
+}
+
+/* ===== DOWNLOAD ===== */
+.download-box{
+    margin-top:30px;
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+}
+.download-box a{
     display:inline-block;
-    margin-top:20px;
-    padding:15px 30px;
+    padding:15px 40px;
     background:#00ffd5;
     color:black;
     text-decoration:none;
-    font-size:18px;
-    border-radius:10px;
+    font-size:20px;
+    border-radius:12px;
     font-weight:bold;
+}
+.download-box a:hover{
+    background:#00bfa5;
+}
+
+/* ===== BACK BUTTON ===== */
+.back{
+    margin-top:20px;
+    text-align:center;
+}
+.back a{
+    color:#00ffd5;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:#111;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+    font-size:14px;
 }
 </style>
 </head>
+
 <body>
 
+<!-- HEADER -->
+<div class="header">
+<img src="images/game1-banner.jpg">
+<h1>اسم لعبة الوندوز</h1>
+</div>
+
+<!-- CONTENT -->
 <div class="container">
-<h1>اسم اللعبة</h1>
 
-<img src="images/game1.jpg">
+<!-- GAME INFO -->
+<div class="game-info">
+<img src="images/game1-icon.jpg">
 
+<div class="info-text">
+<h2>اسم لعبة الوندوز</h2>
+<div class="meta">
+💻 النظام: Windows  
+<br>📦 الحجم: 500 MB  
+<br>🆚 الإصدار: 1.0  
+</div>
+</div>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="description">
+<h3>📝 وصف اللعبة</h3>
 <p>
-هنا تكتب وصف اللعبة بشكل جميل  
-قصة اللعبة، طريقة اللعب، المميزات…
+هنا تكتب وصف اللعبة بشكل احترافي جدًا  
+تشرح الفكرة، القصة، أسلوب اللعب، المميزات،  
+و ليش اللاعب لازم يحملها.
 </p>
+</div>
 
-<a class="download" href="games/game1.apk" download>
-⬇ تحميل اللعبة
+<!-- DOWNLOAD -->
+<div class="download-box">
+<h3>⬇ تحميل لعبة الوندوز</h3>
+<a href="games/game1.exe" download>
+تحميل اللعبة
 </a>
+</div>
+
+<!-- BACK -->
+<div class="back">
+<a href="index.html">⬅ الرجوع إلى الصفحة الرئيسية</a>
+</div>
 
 </div>
+
+<footer>
+© 2025 SAJAD GAMES
+</footer>
 
 </body>
 </html>
