@@ -3,64 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <title>SAJAD GAMES</title>
+
 <style>
 body{
+    margin:0;
+    font-family:Arial;
     background:#0e0e0e;
     color:white;
-    font-family:Arial;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+    background:#111;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    padding:15px;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+nav a:hover{
+    color:#00ffd5;
+}
+
+/* ===== HEADER / BANNER ===== */
+header{
+    text-align:center;
+    padding:40px 20px;
+}
+header img{
+    width:100%;
+    max-height:300px;
+    object-fit:cover;
+    border-radius:15px;
+}
+header h1{
+    margin-top:20px;
+    font-size:36px;
+}
+
+/* ===== SECTION ===== */
+.section{
+    padding:20px;
+    max-width:1000px;
+    margin:auto;
+}
+.section h2{
+    border-bottom:2px solid #00ffd5;
+    padding-bottom:10px;
+}
+
+/* ===== GAME LIST ===== */
+.game{
+    display:flex;
+    align-items:center;
+    background:#1c1c1c;
+    margin:15px 0;
+    padding:15px;
+    border-radius:12px;
+}
+.game img{
+    width:80px;
+    height:80px;
+    border-radius:12px;
+    object-fit:cover;
+    margin-left:15px;
+}
+.game h3{
     margin:0;
 }
-header{
-    background:#111;
-    padding:20px;
-    text-align:center;
-    font-size:28px;
-}
-.games{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    padding:20px;
-}
-.card{
-    background:#1c1c1c;
-    border-radius:15px;
-    overflow:hidden;
-    text-align:center;
-}
-.card img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-}
-.card h3{
-    margin:15px 0;
-}
-.card a{
-    display:block;
-    margin:15px;
-    padding:10px;
+.game a{
+    margin-right:auto;
+    padding:8px 15px;
     background:#00ffd5;
     color:black;
     text-decoration:none;
     border-radius:8px;
     font-weight:bold;
 }
+
+/* ===== FOOTER ===== */
+footer{
+    background:#111;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+    font-size:14px;
+}
 </style>
 </head>
+
 <body>
 
-<header>🎮 SAJAD GAMES</header>
+<!-- NAVBAR -->
+<nav>
+<a href="index.html">الرئيسية</a>
+<a href="#android">ألعاب أندرويد</a>
+<a href="#windows">ألعاب ويندوز</a>
+<a href="about.html">عن الموقع</a>
+</nav>
 
-<div class="games">
+<!-- HEADER -->
+<header>
+<img src="images/banner.jpg">
+<h1>🎮 SAJAD GAMES</h1>
+<p>منصة نشر الألعاب المستقلة</p>
+</header>
 
-<div class="card">
+<!-- ANDROID GAMES -->
+<div class="section" id="android">
+<h2>📱 ألعاب أندرويد</h2>
+
+<div class="game">
 <img src="images/game1.jpg">
 <h3>اسم اللعبة</h3>
-<a href="game1.html">دخول صفحة اللعبة</a>
+<a href="game1.html">دخول</a>
+</div>
+
+<!-- انسخ هذا البلوك لأي لعبة جديدة -->
+</div>
+
+<!-- WINDOWS GAMES -->
+<div class="section" id="windows">
+<h2>💻 ألعاب ويندوز</h2>
+
+<div class="game">
+<img src="images/game2.jpg">
+<h3>اسم لعبة ويندوز</h3>
+<a href="game2.html">دخول</a>
 </div>
 
 </div>
+
+<footer>
+© 2025 SAJAD GAMES
+</footer>
 
 </body>
 </html>
