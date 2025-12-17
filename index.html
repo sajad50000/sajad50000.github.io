@@ -16,16 +16,23 @@ body{
 nav{
     background:#111;
     display:flex;
-    justify-content:center;
-    gap:25px;
-    padding:15px;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 25px;
 }
-nav a{
+nav .links{
+    display:flex;
+    gap:25px;
+}
+nav a, nav button{
     color:#fff;
     text-decoration:none;
     font-weight:bold;
+    background:none;
+    border:none;
+    cursor:pointer;
 }
-nav a:hover{ color:#00ffd5; }
+nav a:hover, nav button:hover{ color:#00ffd5; }
 
 /* HEADER */
 header{
@@ -62,10 +69,6 @@ header p{
     transform:scale(1.03);
     box-shadow:0 0 30px rgba(0,255,213,0.3);
 }
-.article:active{
-    transform:scale(0.97);
-}
-
 .article img{
     width:100%;
     height:300px;
@@ -74,15 +77,35 @@ header p{
 .article-content{
     padding:20px;
 }
-.article h2{
-    margin-top:0;
-}
 .article p{
     color:#ccc;
     line-height:1.8;
 }
 
-/* FOOTER */
+/* LOGIN */
+#loginBox{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.login-card{
+    background:#1a1a1a;
+    padding:35px;
+    border-radius:18px;
+    width:320px;
+    text-align:center;
+}
+.login-card button{
+    width:100%;
+    padding:12px;
+    background:#00ffd5;
+    border:none;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
 footer{
     background:#111;
     text-align:center;
@@ -94,11 +117,26 @@ footer{
 
 <body>
 
+<!-- LOGIN -->
+<div id="loginBox" style="display:none;">
+    <div class="login-card">
+        <h2>🎮 SEKO GAMES</h2>
+        <p>يجب تسجيل الدخول للمتابعة</p>
+        <button onclick="googleLogin()">تسجيل الدخول بواسطة Google</button>
+    </div>
+</div>
+
+<!-- SITE -->
+<div id="site" style="display:none;">
+
 <nav>
-<a href="index.html">الرئيسية</a>
-<a href="android.html">ألعاب أندرويد</a>
-<a href="windows.html">ألعاب ويندوز</a>
-<a href="about.html">عن الموقع</a>
+    <div class="links">
+        <a href="index.html">الرئيسية</a>
+        <a href="android.html">ألعاب أندرويد</a>
+        <a href="windows.html">ألعاب ويندوز</a>
+        <a href="about.html">عن الموقع</a>
+    </div>
+    <button onclick="logout()">تسجيل خروج</button>
 </nav>
 
 <header>
@@ -108,7 +146,6 @@ footer{
 
 <div class="container">
 
-<!-- ARTICLE -->
 <div class="article" onclick="location.href='article1.html'">
 <img src="images/مستشفئ المتابعين.png">
 <div class="article-content">
@@ -124,6 +161,56 @@ footer{
 <footer>
 © 2025 SEKO GAMES
 </footer>
+
+</div>
+
+<!-- FIREBASE GOOGLE LOGIN -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+/* Firebase Config (مالتك) */
+const firebaseConfig = {
+  apiKey: "AIzaSyCYsHJNrq4fen8h9uT5E7SkLlrQItkXee0",
+  authDomain: "seko-games.firebaseapp.com",
+  projectId: "seko-games",
+  storageBucket: "seko-games.firebasestorage.app",
+  messagingSenderId: "783597210540",
+  appId: "1:783597210540:web:30c465491b433744774809"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+/* تسجيل الدخول */
+window.googleLogin = function(){
+  signInWithPopup(auth, provider)
+    .catch(() => alert("فشل تسجيل الدخول"));
+};
+
+/* تسجيل الخروج */
+window.logout = function(){
+  signOut(auth);
+};
+
+/* حماية الموقع */
+onAuthStateChanged(auth, user => {
+  if(user){
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("site").style.display = "block";
+  }else{
+    document.getElementById("loginBox").style.display = "flex";
+    document.getElementById("site").style.display = "none";
+  }
+});
+</script>
 
 </body>
 </html>
