@@ -24,15 +24,51 @@ nav .links{
     display:flex;
     gap:25px;
 }
-nav a, nav button{
+nav a{
     color:#fff;
     text-decoration:none;
     font-weight:bold;
+}
+nav a:hover{ color:#00ffd5; }
+
+/* USER MENU */
+#userMenu{
+    display:none;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    position:relative;
+}
+#userMenu img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid #00ffd5;
+}
+#userMenu span{
+    font-weight:bold;
+    font-size:14px;
+}
+#dropdown{
+    position:absolute;
+    top:55px;
+    left:0;
+    background:#1a1a1a;
+    border-radius:12px;
+    padding:10px 15px;
+    display:none;
+    box-shadow:0 0 15px rgba(0,0,0,0.6);
+}
+#dropdown button{
     background:none;
     border:none;
+    color:#fff;
+    font-weight:bold;
     cursor:pointer;
 }
-nav a:hover, nav button:hover{ color:#00ffd5; }
+#dropdown button:hover{
+    color:#00ffd5;
+}
 
 /* HEADER */
 header{
@@ -136,12 +172,21 @@ footer{
         <a href="windows.html">ألعاب ويندوز</a>
         <a href="about.html">عن الموقع</a>
     </div>
-    <button onclick="logout()">تسجيل خروج</button>
+
+    <!-- USER -->
+    <div id="userMenu">
+        <img id="userPhoto">
+        <span id="userName"></span>
+
+        <div id="dropdown">
+            <button onclick="logout()">تسجيل خروج</button>
+        </div>
+    </div>
 </nav>
 
 <header>
 <h1>🎮 SEKO GAMES</h1>
-<p>مقالات – أخبار – ألعاب مستقلة</p>
+<p>مقالات – أخبار – ألعاب مستققلة</p>
 </header>
 
 <div class="container">
@@ -164,7 +209,7 @@ footer{
 
 </div>
 
-<!-- FIREBASE GOOGLE LOGIN -->
+<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -175,12 +220,10 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-/* Firebase Config (مالتك) */
 const firebaseConfig = {
   apiKey: "AIzaSyCYsHJNrq4fen8h9uT5E7SkLlrQItkXee0",
   authDomain: "seko-games.firebaseapp.com",
   projectId: "seko-games",
-  storageBucket: "seko-games.firebasestorage.app",
   messagingSenderId: "783597210540",
   appId: "1:783597210540:web:30c465491b433744774809"
 };
@@ -189,25 +232,36 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-/* تسجيل الدخول */
-window.googleLogin = function(){
+window.googleLogin = () => {
   signInWithPopup(auth, provider)
-    .catch(() => alert("فشل تسجيل الدخول"));
+    .catch(()=>alert("فشل تسجيل الدخول"));
 };
 
-/* تسجيل الخروج */
-window.logout = function(){
+window.logout = () => {
   signOut(auth);
 };
 
-/* حماية الموقع */
 onAuthStateChanged(auth, user => {
   if(user){
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("site").style.display = "block";
+    loginBox.style.display="none";
+    site.style.display="block";
+
+    userMenu.style.display="flex";
+    userName.textContent = user.displayName;
+    userPhoto.src = user.photoURL;
   }else{
-    document.getElementById("loginBox").style.display = "flex";
-    document.getElementById("site").style.display = "none";
+    loginBox.style.display="flex";
+    site.style.display="none";
+    userMenu.style.display="none";
+  }
+});
+
+// Dropdown
+document.addEventListener("click", e=>{
+  if(userMenu.contains(e.target)){
+    dropdown.style.display = dropdown.style.display==="block" ? "none" : "block";
+  }else{
+    dropdown.style.display="none";
   }
 });
 </script>
